@@ -31,6 +31,7 @@ migrate_working_dir/
 .pub/
 /build/
 .password.txt
+lib/core/secrets/app_secrets.dart
 
 # Symbolication related
 app.*.symbols
