@@ -11,7 +11,7 @@ import 'package:get_it/get_it.dart';
 final serviceLocator = GetIt.instance;
 
 Future<void> initDependencies() async {
-
+  _initAuth();
   final supabase = await Supabase.initialize(
       url: AppSecrets.supabaseUrl,
       anonKey: AppSecrets.supabaseAnonKey
