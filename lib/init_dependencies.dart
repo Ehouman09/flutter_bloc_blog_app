@@ -3,6 +3,8 @@ import 'package:blog_app/core/secrets/app_secrets.dart';
 import 'package:blog_app/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:blog_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:blog_app/features/auth/domain/repository/auth_repository.dart';
+import 'package:blog_app/features/auth/domain/usecases/current_user_usecase.dart';
+import 'package:blog_app/features/auth/domain/usecases/user_login_usecase.dart';
 import 'package:blog_app/features/auth/domain/usecases/user_sign_up_usecase.dart';
 import 'package:blog_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -28,7 +30,7 @@ void _initAuth() {
               serviceLocator()
           )
   );
-  
+
   serviceLocator.registerFactory<AuthRepository>(
           () => AuthRepositoryImpl(
               serviceLocator()
@@ -39,9 +41,20 @@ void _initAuth() {
           () => UserSignUpUsecase(serviceLocator())
   );
 
+  serviceLocator.registerFactory(
+          () => UserLoginUsecase(serviceLocator())
+  );
+  serviceLocator.registerFactory(
+          () => CurrentUserUsecase(serviceLocator())
+  );
+
+
+
   serviceLocator.registerLazySingleton(
           () => AuthBloc(
-              userSignUpUsecase: serviceLocator()
+              userSignUpUsecase: serviceLocator(),
+              userLoginUsecase: serviceLocator(),
+              currentUserUsecase: serviceLocator(),
           )
   );
 

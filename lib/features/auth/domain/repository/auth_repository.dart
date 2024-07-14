@@ -15,4 +15,6 @@ Future<Either<Failure, UserEntity>> loginWithEmailPassword({
   required String password,
 });
 
+Future<Either<Failure, UserEntity>> curentUser();
+
 }

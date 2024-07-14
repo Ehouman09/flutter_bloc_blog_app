@@ -6,6 +6,7 @@ import 'package:blog_app/features/auth/domain/repository/auth_repository.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+
 class AuthRepositoryImpl implements AuthRepository {
 
   final AuthRemoteDataSource remoteDataSource;
@@ -59,5 +60,20 @@ class AuthRepositoryImpl implements AuthRepository {
     }
 
 }
+
+  @override
+  Future<Either<Failure, UserEntity>> curentUser() async {
+
+    try {
+      final user = await remoteDataSource.getCurrentUserData();
+
+      if(user == null){
+        return left(Failure("User not logged in"));
+      }
+      return right(user);
+    } on ServerException catch (e){
+      return left(Failure(e.message));
+    }
+  }
 
 }

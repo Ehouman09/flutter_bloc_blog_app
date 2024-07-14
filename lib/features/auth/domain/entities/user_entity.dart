@@ -12,5 +12,4 @@ class UserEntity {
   final String email;
 
 
-
 }
