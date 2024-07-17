@@ -49,12 +49,20 @@ class _MyAppState extends State<MyApp> {
       title: 'Blog App',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkThemeMode,
-      home: const BlocSelector<AppUserCubit, AppUserState, bool>(
+      home:  BlocSelector<AppUserCubit, AppUserState, bool>(
           selector: (state) {
             return state is AppUserLoggedIn;
           },
-          builder: (context, state){
-            return LoginPage();
+          builder: (context, isLoggedIn){
+
+            if(isLoggedIn){
+              return const Scaffold(
+                body: Center(
+                  child: Text("Logged in"),
+                ),
+              );
+            }
+            return const LoginPage();
           }
       ),
     );
