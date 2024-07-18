@@ -6,7 +6,7 @@ class BlogEntity {
     required this.posterId,
     required this.title,
     required this.content,
-    required this.image,
+    required this.imageUrl,
     required this.topics,
     required this.updatedAt,
   });
@@ -15,7 +15,7 @@ class BlogEntity {
   final String posterId;
   final String title;
   final String content;
-  final String image;
+  final String imageUrl;
   final List<String> topics;
   final DateTime updatedAt;
 
