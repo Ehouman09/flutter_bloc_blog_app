@@ -21,7 +21,7 @@ class BlogModel extends BlogEntity {
       'content': content,
       'image_url': imageUrl,
       'topics': topics,
-      'updatedAt': updatedAt.toIso8601String(),
+      'updated_at': updatedAt.toIso8601String(),
     };
   }
 

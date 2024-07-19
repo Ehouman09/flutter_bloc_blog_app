@@ -19,7 +19,8 @@ class UploadBlogUsecase implements UseCase<BlogEntity, UploadBlogParams>{
         title: params.title,
         content: params.content,
         posterId: params.posterId,
-        topics: params.topics
+        topics: params.topics,
+        updatedAt: params.updatedAt!,
     );
 
   }
@@ -35,11 +36,13 @@ class UploadBlogParams {
     required this.content,
     required this.topics,
     required this.image,
+    required this.updatedAt,
 });
 
   final String posterId;
   final String title;
   final String content;
+  final DateTime? updatedAt;
   final List<String> topics;
   final File image;
 }

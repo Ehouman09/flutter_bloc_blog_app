@@ -32,6 +32,7 @@ class BlogRemoteDataSourceImpl implements BlogRemoteDataSource {
       return BlogModel.fromJson(response.first);
 
     } catch (e) {
+      print("#######error#####${e}###");
       throw ServerException(e.toString());
     }
 
@@ -55,6 +56,7 @@ class BlogRemoteDataSourceImpl implements BlogRemoteDataSource {
           .getPublicUrl(blog.id);
 
     } catch (e){
+      print("#######error#####${e}###");
       throw ServerException(e.toString());
     }
 

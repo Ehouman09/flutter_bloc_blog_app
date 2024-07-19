@@ -21,29 +21,32 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
 
 
       on<BlogEvent>((_, emit) => emit(BlogLoadingState()));
-      on<BlogUpload>();
+      on<BlogUploadEvent>(_onUploadBlog);
 
 
   }
 
 
 
-  // void _onAuthSignUp(AuthSignUpEvent event, Emitter<AuthState> emit)  async {
-  //
-  //   final response = await _userSignUpUsecase(
-  //       UserSignUpParams(
-  //           name: event.name,
-  //           email: event.email,
-  //           password: event.password
-  //       )
-  //   );
-  //
-  //   response.fold(
-  //           (failure) => emit(AuthFailureState(failure.message)),
-  //           (user) => _emitAuthSuccess(user, emit)
-  //   );
-  //
-  // }
+  void _onUploadBlog(BlogUploadEvent event, Emitter<BlogState> emit)  async {
+
+    final response = await _uploadBlogUsecase(
+      UploadBlogParams(
+          posterId: event.posterId,
+          title: event.title,
+          content: event.content,
+          topics: event.topics,
+          image: event.image,
+        updatedAt: DateTime.now()
+      )
+    );
+
+    response.fold(
+            (failure) => emit(BlogFailureState(failure.message)),
+            (user) =>  emit(BlogSuccessState())
+    );
+
+  }
 
 
 

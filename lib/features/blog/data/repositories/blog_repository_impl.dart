@@ -21,6 +21,7 @@ class BlogRepositoryImpl implements BlogRepository {
       required String title,
       required String content,
       required String posterId,
+      required DateTime updatedAt,
       required List<String> topics
   }) async {
 
